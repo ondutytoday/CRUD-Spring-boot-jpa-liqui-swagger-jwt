@@ -34,8 +34,9 @@ public class Staff {
     private String patronymic;
     @Getter
     @Setter
-    @Column(name = "gender", length = 20, nullable = false)
-    private String gender;
+    @Column(name = "gender", length = 6, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     @Getter
     @Setter
     @Column(name = "date_of_birth", nullable = false)
@@ -58,7 +59,7 @@ public class Staff {
     private BigDecimal salary;
 
     public Staff(String surname, String name, String patronymic,
-                 String gender, Date dateOfBirth, String passport,
+                 Gender gender, Date dateOfBirth, String passport,
                  String homeAddress, String position, BigDecimal salary) {
         this.surname = surname;
         this.name = name;
