@@ -1,7 +1,6 @@
 package org.vasileva.crud.entity;
 
 public enum Gender {
-
     Male,
     Female,
     Agender,
