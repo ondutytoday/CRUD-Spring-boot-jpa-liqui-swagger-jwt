@@ -59,9 +59,10 @@ public class Staff {
     @Setter
     @Column(name = "salary", nullable = false)
     private BigDecimal salary;
+
     @Getter
     @Setter
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL)
     private Set<Orders> orders;
 
     public Staff(String surname, String name, String patronymic,

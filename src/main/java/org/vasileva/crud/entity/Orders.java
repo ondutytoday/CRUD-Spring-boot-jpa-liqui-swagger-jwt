@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Map;
 
 @NoArgsConstructor
 @Entity
@@ -16,6 +17,7 @@ public class Orders {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "order_id", nullable = false, updatable = false)
     private Long orderId;
     @Getter
     @Setter
@@ -24,7 +26,7 @@ public class Orders {
     @Getter
     @Setter
     @Column(name = "staff_id", nullable = false)
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "personnel_number")
     private Staff staff;
     @Getter
@@ -32,6 +34,16 @@ public class Orders {
     @Column(name = "payment_method", length = 4, nullable = false)
     @Enumerated(value = EnumType.STRING)
     private PaymentMethod paymentMethod;
+
+    @Getter
+    @Setter
+    @ElementCollection
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable (name = "dishes_order",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "dish_id")})
+    @MapKeyJoinColumn(name = "dishName")
+    private Map<Dishes, Integer> dishesAndQuantityInOrder;
 
 
 }
