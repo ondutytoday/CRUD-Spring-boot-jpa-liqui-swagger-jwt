@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Entity
@@ -57,6 +59,10 @@ public class Staff {
     @Setter
     @Column(name = "salary", nullable = false)
     private BigDecimal salary;
+    @Getter
+    @Setter
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "staff")
+    private Set<Order> orders = new HashSet<Order>();
 
     public Staff(String surname, String name, String patronymic,
                  Gender gender, Date dateOfBirth, String passport,
@@ -74,18 +80,9 @@ public class Staff {
 
     @Override
     public String toString() {
-        return "Staff{" +
-                "personnelNumber=" + personnelNumber +
-                ", surname='" + surname + '\'' +
-                ", name='" + name + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", passport='" + passport + '\'' +
-                ", homeAddress='" + homeAddress + '\'' +
-                ", position='" + position + '\'' +
-                ", salary=" + salary +
-                '}';
+        return "[" + personnelNumber +
+                ", " + surname + ' ' +
+                name + "]";
     }
 
     @Override
