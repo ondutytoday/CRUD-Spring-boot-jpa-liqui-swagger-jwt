@@ -34,7 +34,7 @@ public class Staff {
     private String patronymic;
     @Getter
     @Setter
-    @Column(name = "gender", length = 6, nullable = false)
+    @Column(name = "gender", length = 11, nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
     @Getter
