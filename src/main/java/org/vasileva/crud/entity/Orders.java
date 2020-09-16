@@ -9,8 +9,8 @@ import java.sql.Timestamp;
 
 @NoArgsConstructor
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "orders")
+public class Orders {
 
     @Getter
     @Setter
@@ -26,7 +26,7 @@ public class Order {
     @Column(name = "staff_id", nullable = false)
     @ManyToOne
     @JoinColumn(name = "personnel_number")
-    private Staff staffId;
+    private Staff staff;
     @Getter
     @Setter
     @Column(name = "payment_method", length = 4, nullable = false)

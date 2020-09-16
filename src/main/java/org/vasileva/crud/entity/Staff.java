@@ -7,7 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -18,7 +17,8 @@ public class Staff {
     @Getter
     @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "personnelNumberSequence", sequenceName = "P_N_SEQUENCE", allocationSize = 1, initialValue = 2000000)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personnelNumberSequence")
     @Column(name = "personnel_number")
     private Long personnelNumber;
 
@@ -61,8 +61,8 @@ public class Staff {
     private BigDecimal salary;
     @Getter
     @Setter
-    @OneToMany (fetch = FetchType.LAZY, mappedBy = "staff")
-    private Set<Order> orders = new HashSet<Order>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+    private Set<Orders> orders;
 
     public Staff(String surname, String name, String patronymic,
                  Gender gender, Date dateOfBirth, String passport,
