@@ -46,4 +46,35 @@ public class Dishes {
             joinColumns = {@JoinColumn(name = "dish_id")},
             inverseJoinColumns = {@JoinColumn(name = "order_id")})
     private Set<Orders> ordersOfDishes;
+    @Getter
+    @Setter
+    @OneToMany (mappedBy = "dish", cascade = CascadeType.ALL)
+    private Set<DishesSupply> dishesSupplies;
+
+    public Dishes(String dishName, Double calories, BigDecimal price, Long balance) {
+        this.dishName = dishName;
+        this.calories = calories;
+        this.price = price;
+        this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return dishName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dishes dishes = (Dishes) o;
+
+        return dishId.equals(dishes.dishId);
+    }
+
+    @Override
+    public int hashCode() {
+        return dishId.hashCode();
+    }
 }
