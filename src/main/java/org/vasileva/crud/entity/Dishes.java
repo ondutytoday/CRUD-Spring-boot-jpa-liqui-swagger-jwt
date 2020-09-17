@@ -36,7 +36,7 @@ public class Dishes {
     @Setter
     @Column(name = "balance", nullable = false)
     //запас, количество штук в остатке
-    private Long balance;
+    private Integer balance;
 
     @Getter
     @Setter
@@ -50,7 +50,7 @@ public class Dishes {
     @OneToMany (mappedBy = "dish", cascade = CascadeType.ALL)
     private Set<DishesSupply> dishesSupplies;
 
-    public Dishes(String dishName, Double calories, BigDecimal price, Long balance) {
+    public Dishes(String dishName, Double calories, BigDecimal price, Integer balance) {
         this.dishName = dishName;
         this.calories = calories;
         this.price = price;

@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Map;
+import java.util.List;
 
 @NoArgsConstructor
 @Entity
@@ -38,14 +38,11 @@ public class Orders {
 
     @Getter
     @Setter
-    @ElementCollection
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "dishes_order",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "dish_id")})
-    @MapKeyJoinColumn(name = "dishName")
-    private Map<Dishes, Integer> dishesAndQuantityInOrder;
-
+    private List<Dishes> dishesInOrder;
 
     @Override
     public boolean equals(Object o) {
@@ -68,6 +65,6 @@ public class Orders {
                 ", timestamp=" + timestamp +
                 ", staff=" + staff +
                 ", paymentMethod=" + paymentMethod +
-                ", dishesAndQuantityInOrder=" + dishesAndQuantityInOrder;
+                ", dishesInOrder=" + dishesInOrder;
     }
 }
