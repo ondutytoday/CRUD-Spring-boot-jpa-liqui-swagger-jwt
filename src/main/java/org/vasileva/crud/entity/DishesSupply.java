@@ -63,10 +63,8 @@ public class DishesSupply {
 
     @Override
     public String toString() {
-        return "id=" + id +
+        return ", dish=" + dish +
                 ", quantity=" + quantity +
-                ", price=" + price +
-                ", supply=" + supply +
-                ", dish=" + dish;
+                ", price=" + price;
     }
 }

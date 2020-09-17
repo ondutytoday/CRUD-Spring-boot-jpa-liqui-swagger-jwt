@@ -27,12 +27,12 @@ public class Supply {
     @Getter
     @Setter
     @Column(name = "supplier_id", nullable = false)
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id")
     private Suppliers supplier;
     @Getter
     @Setter
-    @OneToMany (mappedBy = "supply", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL)
     private Set<DishesSupply> dishesSupplies;
 
     public Supply(Timestamp dateOfSupply, Suppliers supplier, Set<DishesSupply> dishesSupplies) {
@@ -54,5 +54,13 @@ public class Supply {
     @Override
     public int hashCode() {
         return supplyId.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "supplyId=" + supplyId +
+                ", dateOfSupply=" + dateOfSupply +
+                ", supplier=" + supplier +
+                ", dishesSupplies=" + dishesSupplies;
     }
 }

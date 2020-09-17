@@ -26,7 +26,7 @@ public class Orders {
     @Getter
     @Setter
     @Column(name = "staff_id", nullable = false)
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personnel_number")
     private Staff staff;
 
@@ -39,8 +39,8 @@ public class Orders {
     @Getter
     @Setter
     @ElementCollection
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable (name = "dishes_order",
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "dishes_order",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "dish_id")})
     @MapKeyJoinColumn(name = "dishName")
@@ -62,4 +62,12 @@ public class Orders {
         return orderId.hashCode();
     }
 
+    @Override
+    public String toString() {
+        return "orderId=" + orderId +
+                ", timestamp=" + timestamp +
+                ", staff=" + staff +
+                ", paymentMethod=" + paymentMethod +
+                ", dishesAndQuantityInOrder=" + dishesAndQuantityInOrder;
+    }
 }

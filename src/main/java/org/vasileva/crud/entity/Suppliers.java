@@ -9,7 +9,7 @@ import java.util.Set;
 
 @NoArgsConstructor
 @Entity
-@Table (name = "suppliers")
+@Table(name = "suppliers")
 public class Suppliers {
 
     @Getter
@@ -60,13 +60,8 @@ public class Suppliers {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[" + "supplierId=").append(supplierId).append(", supplierName='").append(supplierName)
-                .append(", supplierAddress='").append(supplierAddress).append(", inn=").append(inn)
-                .append(", phoneNumber='").append(phoneNumber).append(", email='").append(email);
-        if (information != null) sb.append(", information='").append(information);
-        sb.append("]");
-        return sb.toString();
+        return "supplierId=" + supplierId +
+                ", supplierName='" + supplierName;
     }
 
     @Override
