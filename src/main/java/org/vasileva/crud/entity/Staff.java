@@ -19,7 +19,7 @@ public class Staff {
     @Id
     @SequenceGenerator(name = "personnelNumberSequence", sequenceName = "P_N_SEQUENCE", allocationSize = 1, initialValue = 2000000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personnelNumberSequence")
-    @Column(name = "personnel_number", nullable = false, updatable = false)
+    @Column(name = "personnel_number")
     private Long personnelNumber;
 
     @Getter
@@ -62,7 +62,7 @@ public class Staff {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Orders> orders;
 
     public Staff(String surname, String name, String patronymic,

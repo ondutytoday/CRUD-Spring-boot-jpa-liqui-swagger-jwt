@@ -45,7 +45,7 @@ public class Suppliers {
     private String information;
     @Getter
     @Setter
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Supply> supplies;
 
     public Suppliers(String supplierName, String supplierAddress,

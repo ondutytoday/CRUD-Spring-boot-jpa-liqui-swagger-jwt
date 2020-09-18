@@ -26,13 +26,12 @@ public class Supply {
     private Timestamp dateOfSupply;
     @Getter
     @Setter
-    @Column(name = "supplier_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "supplier_id")
+    @JoinColumn(name = "supplier_id", foreignKey = @ForeignKey(name = "FK_supplier"))
     private Suppliers supplier;
     @Getter
     @Setter
-    @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DishesSupply> dishesSupplies;
 
     public Supply(Timestamp dateOfSupply, Suppliers supplier, Set<DishesSupply> dishesSupplies) {

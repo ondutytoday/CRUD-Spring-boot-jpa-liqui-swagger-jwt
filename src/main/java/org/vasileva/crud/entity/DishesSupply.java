@@ -26,17 +26,16 @@ public class DishesSupply {
     @Setter
     @Column(name = "price", scale = 2, nullable = false)
     private BigDecimal price;
+
     @Getter
     @Setter
-    @Column(name = "supply_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "supply_id")
+    @JoinColumn(name = "supply_id", foreignKey = @ForeignKey(name = "FK_supply"))
     private Supply supply;
     @Getter
     @Setter
-    @Column(name = "dish_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dish_id")
+    @JoinColumn(name = "dish_id", foreignKey = @ForeignKey(name = "FK_dish"))
     private Dishes dish;
 
     public DishesSupply(Integer quantity, BigDecimal price, Supply supply, Dishes dish) {

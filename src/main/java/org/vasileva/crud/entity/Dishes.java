@@ -40,14 +40,11 @@ public class Dishes {
 
     @Getter
     @Setter
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable (name = "dishes_order",
-            joinColumns = {@JoinColumn(name = "dish_id")},
-            inverseJoinColumns = {@JoinColumn(name = "order_id")})
+    @ManyToMany (mappedBy = "dishesInOrder")
     private Set<Orders> ordersOfDishes;
     @Getter
     @Setter
-    @OneToMany (mappedBy = "dish", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "dish", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DishesSupply> dishesSupplies;
 
     public Dishes(String dishName, Double calories, BigDecimal price, Integer balance) {

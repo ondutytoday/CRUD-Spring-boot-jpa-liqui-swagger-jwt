@@ -25,9 +25,8 @@ public class Orders {
     private Timestamp timestamp;
     @Getter
     @Setter
-    @Column(name = "staff_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "personnel_number")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "personnel_number", foreignKey = @ForeignKey(name = "FK_STAFF"))
     private Staff staff;
 
     @Getter
@@ -38,11 +37,18 @@ public class Orders {
 
     @Getter
     @Setter
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable(name = "dishes_order",
-            joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = {@JoinColumn(name = "dish_id")})
+            joinColumns = @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order")),
+            inverseJoinColumns = @JoinColumn(name = "dish_id", foreignKey = @ForeignKey(name = "fk_dish")))
     private List<Dishes> dishesInOrder;
+
+    public Orders(Timestamp timestamp, Staff staff, PaymentMethod paymentMethod, List<Dishes> dishesInOrder) {
+        this.timestamp = timestamp;
+        this.staff = staff;
+        this.paymentMethod = paymentMethod;
+        this.dishesInOrder = dishesInOrder;
+    }
 
     @Override
     public boolean equals(Object o) {
