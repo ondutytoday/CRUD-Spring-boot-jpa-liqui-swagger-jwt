@@ -5,14 +5,14 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="4" author="Elena Vasileva">
+    <changeSet id="5" author="Elena Vasileva">
         <sqlFile dbms="postgres"
                  encoding="utf8"
                  endDelimiter="\nGO"
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"
-                 path="10-create-dishes-table.sql"/>
+                 path="10-create-dishes_supply-table.sql"/>
         <rollback>
             <sqlFile dbms="postgres"
                      encoding="utf8"
@@ -20,7 +20,7 @@
                      relativeToChangelogFile="true"
                      splitStatements="true"
                      stripComments="true"
-                     path="10-drop-dishes-table.sql"/>
+                     path="10-drop-dishes_supply-table.sql"/>
         </rollback>
     </changeSet>
 

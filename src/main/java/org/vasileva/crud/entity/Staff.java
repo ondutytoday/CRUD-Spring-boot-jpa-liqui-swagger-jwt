@@ -17,7 +17,7 @@ public class Staff {
     @Getter
     @Setter
     @Id
-    @SequenceGenerator(name = "personnelNumberSequence", sequenceName = "P_N_SEQUENCE", allocationSize = 1, initialValue = 2000000)
+    @SequenceGenerator(name = "personnelNumberSequence", sequenceName = "STAFF_SEQUENCE", allocationSize = 1, initialValue = 2000000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personnelNumberSequence")
     @Column(name = "personnel_number")
     private Long personnelNumber;
