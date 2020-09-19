@@ -1,3 +1,2 @@
-drop table if exists dishes cascade
+drop table if exists dishes cascade;
 
-GO

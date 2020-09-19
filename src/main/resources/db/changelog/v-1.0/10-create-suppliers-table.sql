@@ -7,6 +7,4 @@ create table suppliers (
         supplier_address varchar(255) not null,
         supplier_name varchar(255) not null,
         primary key (supplier_id)
-    )
-
-    GO
+    );

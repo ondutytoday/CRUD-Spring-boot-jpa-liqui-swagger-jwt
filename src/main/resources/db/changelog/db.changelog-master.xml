@@ -9,13 +9,13 @@
         <dbms type="postgresql"/>
     </preConditions>
 
-    <changeSet author="Elena Vasileva" id="1">
+    <changeSet author="ElenaVasileva" id="1">
         <tagDatabase tag="db_init"/>
     </changeSet>
 
     <include file="v-1.0/db.changelog-v.1.0.xml" relativeToChangelogFile="true"/>
 
-    <changeSet author="Elena Vasileva" id="11">
+    <changeSet author="ElenaVasileva" id="11">
         <tagDatabase tag="v.1.0"/>
     </changeSet>
 

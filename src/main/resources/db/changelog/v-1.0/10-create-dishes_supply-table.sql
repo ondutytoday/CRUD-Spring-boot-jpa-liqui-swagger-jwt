@@ -5,20 +5,14 @@ create table dishes_supply (
         dish_id int8,
         supply_id int8,
         primary key (dishes_supply_id)
-    )
-
-GO
+    );
 
 alter table if exists dishes_supply
        add constraint FK_dish
        foreign key (dish_id)
-       references dishes
-
-GO
+       references dishes;
 
 alter table if exists dishes_supply
        add constraint FK_supply
        foreign key (supply_id)
-       references supply
-
-GO
+       references supply;

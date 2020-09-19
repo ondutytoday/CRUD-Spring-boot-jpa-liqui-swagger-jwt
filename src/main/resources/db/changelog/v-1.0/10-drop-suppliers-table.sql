@@ -1,3 +1,2 @@
-drop table if exists suppliers cascade
+drop table if exists suppliers cascade;
 
-GO

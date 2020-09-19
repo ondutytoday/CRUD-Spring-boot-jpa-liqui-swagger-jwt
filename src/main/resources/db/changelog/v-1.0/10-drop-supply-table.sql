@@ -1,8 +1,7 @@
 alter table if exists supply
-       drop constraint if exists FK_supplier
+       drop constraint if exists FK_supplier;
 
-       GO
 
-drop table if exists supply cascade
 
-GO
+drop table if exists supply cascade;
+

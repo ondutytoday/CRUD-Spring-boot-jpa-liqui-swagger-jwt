@@ -5,7 +5,4 @@ create table dishes (
         dish_name varchar(100) not null,
         price numeric(19, 2) not null,
         primary key (dish_id)
-    )
-
-GO
-
+    );

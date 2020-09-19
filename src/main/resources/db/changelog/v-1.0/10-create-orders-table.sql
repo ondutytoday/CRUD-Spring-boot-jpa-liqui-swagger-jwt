@@ -4,11 +4,10 @@ create table orders (
         timestamp timestamp not null,
         personnel_number int8,
         primary key (order_id)
-    )
-GO
+    );
+
 alter table if exists orders
        add constraint FK_STAFF
        foreign key (personnel_number)
-       references staff
+       references staff;
 
-       GO

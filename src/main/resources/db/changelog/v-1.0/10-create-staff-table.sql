@@ -10,11 +10,4 @@ create table staff (
         salary numeric(19, 2) not null,
         surname varchar(100),
         primary key (personnel_number)
-    )
-GO
-alter table if exists orders
-       add constraint FK_STAFF
-       foreign key (personnel_number)
-       references staff
-
-GO
+    );

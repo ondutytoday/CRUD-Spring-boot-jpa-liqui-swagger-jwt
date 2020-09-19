@@ -1,3 +1,2 @@
-drop table if exists staff cascade
+drop table if exists staff cascade;
 
-GO
