@@ -1,9 +1,17 @@
 package org.vasileva.crud.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.vasileva.crud.repository.DishesRepository;
+import org.vasileva.crud.entity.Dishes;
+
+import java.util.List;
 
 public interface DishesService {
 
+    Dishes getById(Long id);
+
+    void save (Dishes dishes);
+
+    void delete(Long id);
+
+    List<Dishes> getAll();
 
 }
