@@ -2,8 +2,8 @@ package org.vasileva.crud.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.vasileva.crud.entity.Dishes;
+import org.vasileva.crud.entity.DishesSupply;
 
 @Repository
-public interface DishesRepository extends JpaRepository<Dishes, Long>{
+public interface DishesSupplyRepository extends JpaRepository<DishesSupply, Long> {
 }
