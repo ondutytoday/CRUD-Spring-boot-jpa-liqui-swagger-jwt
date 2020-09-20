@@ -8,7 +8,7 @@ public interface DishesSupplyService {
 
     DishesSupply getById(Long id);
 
-    void save (DishesSupply dishes);
+    void save (DishesSupply dishesSupply);
 
     void delete(Long id);
 

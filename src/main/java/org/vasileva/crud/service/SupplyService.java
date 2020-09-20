@@ -7,7 +7,7 @@ import java.util.List;
 public interface SupplyService {
     Supply getById(Long id);
 
-    void save (Supply dishes);
+    void save (Supply supply);
 
     void delete(Long id);
 

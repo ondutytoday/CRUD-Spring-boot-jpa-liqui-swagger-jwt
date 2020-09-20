@@ -7,7 +7,7 @@ import java.util.List;
 public interface StaffService {
     Staff getById(Long id);
 
-    void save (Staff dishes);
+    void save (Staff staff);
 
     void delete(Long id);
 

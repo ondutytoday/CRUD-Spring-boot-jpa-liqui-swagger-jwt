@@ -7,7 +7,7 @@ import java.util.List;
 public interface SuppliersService {
     Suppliers getById(Long id);
 
-    void save (Suppliers dishes);
+    void save (Suppliers supplier);
 
     void delete(Long id);
 

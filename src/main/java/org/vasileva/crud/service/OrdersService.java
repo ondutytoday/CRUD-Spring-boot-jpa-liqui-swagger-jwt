@@ -7,7 +7,7 @@ import java.util.List;
 public interface OrdersService {
     Orders getById(Long id);
 
-    void save (Orders dishes);
+    void save (Orders order);
 
     void delete(Long id);
 
