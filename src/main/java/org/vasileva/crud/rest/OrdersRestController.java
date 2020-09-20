@@ -20,7 +20,7 @@ public class OrdersRestController {
     private OrdersService ordersService;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> getDish (@PathVariable("id") Long id) {
+    public ResponseEntity<Orders> getOrder (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -32,7 +32,7 @@ public class OrdersRestController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> saveDish (@RequestBody @Valid Orders order) {
+    public ResponseEntity<Orders> saveOrder (@RequestBody @Valid Orders order) {
         HttpHeaders headers = new HttpHeaders();
         if (order == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -42,7 +42,7 @@ public class OrdersRestController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> updateDish (@RequestBody @Valid Orders order) {
+    public ResponseEntity<Orders> updateOrder (@RequestBody @Valid Orders order) {
         HttpHeaders headers = new HttpHeaders();
         if (order == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -52,7 +52,7 @@ public class OrdersRestController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> deleteDish (@PathVariable("id") Long id) {
+    public ResponseEntity<Orders> deleteOrder (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
