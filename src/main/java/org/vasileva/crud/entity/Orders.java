@@ -9,34 +9,28 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class Orders {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "order_id", nullable = false, updatable = false)
     private Long orderId;
-    @Getter
-    @Setter
+
     @Column(name = "timestamp", nullable = false)
     private Timestamp timestamp;
-    @Getter
-    @Setter
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "personnel_number", foreignKey = @ForeignKey(name = "FK_STAFF"))
     private Staff staff;
 
-    @Getter
-    @Setter
     @Column(name = "payment_method", length = 4, nullable = false)
     @Enumerated(value = EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    @Getter
-    @Setter
     @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable(name = "dishes_order",
             joinColumns = @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order")),

@@ -10,58 +10,46 @@ import java.sql.Date;
 import java.util.Set;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "staff")
 public class Staff {
 
-    @Getter
-    @Setter
     @Id
     @SequenceGenerator(name = "personnelNumberSequence", sequenceName = "STAFF_SEQUENCE", allocationSize = 1, initialValue = 2000000)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personnelNumberSequence")
     @Column(name = "personnel_number")
     private Long personnelNumber;
 
-    @Getter
-    @Setter
     @Column(name = "surname", length = 100)
     private String surname;
-    @Getter
-    @Setter
+
     @Column(name = "name", length = 50, nullable = false)
     private String name;
-    @Getter
-    @Setter
+
     @Column(name = "patronymic", length = 100, nullable = true)
     private String patronymic;
-    @Getter
-    @Setter
+
     @Column(name = "gender", length = 11, nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @Getter
-    @Setter
+
     @Column(name = "date_of_birth", nullable = false)
     private Date dateOfBirth;
-    @Getter
-    @Setter
+
     @Column(name = "passport", nullable = false)
     private String passport;
-    @Getter
-    @Setter
+
     @Column(name = "home_address", nullable = false)
     private String homeAddress;
-    @Getter
-    @Setter
+
     @Column(name = "position", length = 100, nullable = false)
     private String position;
-    @Getter
-    @Setter
+
     @Column(name = "salary", nullable = false)
     private BigDecimal salary;
 
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Orders> orders;
 
