@@ -19,8 +19,8 @@ public class DishesRestController {
     @Autowired
     private DishesService dishesService;
 
-    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dishes> getDish (@PathVariable("id") Long id) {
+    @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dishes> getDish(@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -31,8 +31,8 @@ public class DishesRestController {
         return new ResponseEntity<>(dish, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dishes> saveDish (@RequestBody @Valid Dishes dish) {
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dishes> saveDish(@RequestBody @Valid Dishes dish) {
         HttpHeaders headers = new HttpHeaders();
         if (dish == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -41,18 +41,29 @@ public class DishesRestController {
         return new ResponseEntity<>(dish, headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dishes> updateDish (@RequestBody @Valid Dishes dish) {
+    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dishes> updateDish(@RequestBody @Valid Dishes dishDetails, @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
-        if (dish == null) {
+        if (dishDetails == null || id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        Dishes dish = dishesService.getById(id);
+        if (dish == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        dish.setBalance(dishDetails.getBalance());
+        dish.setCalories(dishDetails.getCalories());
+        dish.setDishesSupplies(dishDetails.getDishesSupplies());
+        dish.setDishName(dishDetails.getDishName());
+        dish.setOrdersOfDishes(dishDetails.getOrdersOfDishes());
+        dish.setPrice(dishDetails.getPrice());
+
         dishesService.save(dish);
         return new ResponseEntity<>(dish, headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dishes> deleteDish (@PathVariable("id") Long id) {
+    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dishes> deleteDish(@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -64,7 +75,7 @@ public class DishesRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Dishes>> getAllDishes() {
         List<Dishes> dishes = this.dishesService.getAll();
 
