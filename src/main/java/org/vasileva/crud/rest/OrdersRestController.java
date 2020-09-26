@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.vasileva.crud.dto.OrdersDto;
 import org.vasileva.crud.entity.Orders;
+import org.vasileva.crud.mapper.OrdersMapper;
 import org.vasileva.crud.service.OrdersService;
 
 import javax.validation.Valid;
@@ -18,9 +20,11 @@ public class OrdersRestController {
 
     @Autowired
     private OrdersService ordersService;
+    @Autowired
+    private OrdersMapper ordersMapper;
 
     @GetMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> getOrder (@PathVariable("id") Long id) {
+    public ResponseEntity<OrdersDto> getOrder (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -28,31 +32,42 @@ public class OrdersRestController {
         if (order == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(order, HttpStatus.OK);
+        return new ResponseEntity<>(ordersMapper.toOrdersDto(order), HttpStatus.OK);
     }
 
     @PostMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> saveOrder (@RequestBody @Valid Orders order) {
+    public ResponseEntity<OrdersDto> saveOrder (@RequestBody @Valid OrdersDto ordersDto) {
         HttpHeaders headers = new HttpHeaders();
-        if (order == null) {
+        if (ordersDto == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        Orders order = ordersMapper.toOrders(ordersDto);
         ordersService.save(order);
-        return new ResponseEntity<>(order, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(ordersMapper.toOrdersDto(order), headers, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> updateOrder (@RequestBody @Valid Orders order) {
+    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<OrdersDto> updateOrder (@RequestBody @Valid OrdersDto ordersDetailsDto, @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
-        if (order == null) {
+        if (ordersDetailsDto == null|| id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        Orders order = ordersService.getById(id);
+        Orders orderDetails = ordersMapper.toOrders(ordersDetailsDto);
+        if (order == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        order.setDishesInOrder(orderDetails.getDishesInOrder());
+        order.setPaymentMethod(orderDetails.getPaymentMethod());
+        order.setStaff(orderDetails.getStaff());
+        order.setTimestamp(orderDetails.getTimestamp());
+
         ordersService.save(order);
-        return new ResponseEntity<>(order, headers, HttpStatus.OK);
+        return new ResponseEntity<>(ordersMapper.toOrdersDto(order), headers, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Orders> deleteOrder (@PathVariable("id") Long id) {
+    public ResponseEntity<OrdersDto> deleteOrder (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -65,12 +80,12 @@ public class OrdersRestController {
     }
 
     @GetMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Orders>> getAllOrders() {
+    public ResponseEntity<List<OrdersDto>> getAllOrders() {
         List<Orders> orders = this.ordersService.getAll();
 
         if (orders.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(orders, HttpStatus.OK);
+        return new ResponseEntity<>(ordersMapper.toListOrdersDto(orders), HttpStatus.OK);
     }
 }
