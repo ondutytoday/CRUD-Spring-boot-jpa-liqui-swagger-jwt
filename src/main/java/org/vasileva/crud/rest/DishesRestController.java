@@ -18,7 +18,9 @@ import java.util.List;
 @RequestMapping("/dishes/")
 public class DishesRestController {
 
+    @Autowired
     private DishesService dishesService;
+    @Autowired
     private DishesMapper dishesMapper;
 
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
