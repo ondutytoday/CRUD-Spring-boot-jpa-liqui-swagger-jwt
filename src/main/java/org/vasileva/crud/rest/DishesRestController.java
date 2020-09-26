@@ -13,14 +13,13 @@ import org.vasileva.crud.service.DishesService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/dishes/")
 public class DishesRestController {
 
-    @Autowired
     private DishesService dishesService;
+    private DishesMapper dishesMapper;
 
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesDto> getDish(@PathVariable("id") Long id) {
@@ -31,7 +30,7 @@ public class DishesRestController {
         if (dish == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(DishesMapper.DISHES_MAPPER.toDishesDto(dish), HttpStatus.OK);
+        return new ResponseEntity<>(dishesMapper.toDishesDto(dish), HttpStatus.OK);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,9 +39,9 @@ public class DishesRestController {
         if (dishDto == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Dishes dish = DishesMapper.DISHES_MAPPER.toDishes(dishDto);
+        Dishes dish = dishesMapper.toDishes(dishDto);
         dishesService.save(dish);
-        return new ResponseEntity<>(DishesMapper.DISHES_MAPPER.toDishesDto(dish), headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(dishesMapper.toDishesDto(dish), headers, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,7 +51,7 @@ public class DishesRestController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Dishes dish = dishesService.getById(id);
-        Dishes dishDetails = DishesMapper.DISHES_MAPPER.toDishes(dishDetailsDto);
+        Dishes dishDetails = dishesMapper.toDishes(dishDetailsDto);
         if (dish == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -64,7 +63,7 @@ public class DishesRestController {
         dish.setPrice(dishDetails.getPrice());
 
         dishesService.save(dish);
-        return new ResponseEntity<>(DishesMapper.DISHES_MAPPER.toDishesDto(dish), headers, HttpStatus.OK);
+        return new ResponseEntity<>(dishesMapper.toDishesDto(dish), headers, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -87,7 +86,7 @@ public class DishesRestController {
         if (dishes.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        List<DishesDto> dishesDto = dishes.stream().map(DishesMapper.DISHES_MAPPER::toDishesDto).collect(Collectors.toList());
-        return new ResponseEntity<>(dishesDto, HttpStatus.OK);
+
+        return new ResponseEntity<>(dishesMapper.toListDishesDto(dishes), HttpStatus.OK);
     }
 }

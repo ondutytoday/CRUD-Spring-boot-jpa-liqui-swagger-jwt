@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class DishesDto {
 
-    private Long dishId;
-
     private String dishName;
 
     private Double calories;
