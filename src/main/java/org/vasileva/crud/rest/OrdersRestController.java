@@ -19,7 +19,7 @@ public class OrdersRestController {
     @Autowired
     private OrdersService ordersService;
 
-    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> getOrder (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -31,7 +31,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> saveOrder (@RequestBody @Valid Orders order) {
         HttpHeaders headers = new HttpHeaders();
         if (order == null) {
@@ -41,7 +41,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(order, headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> updateOrder (@RequestBody @Valid Orders order) {
         HttpHeaders headers = new HttpHeaders();
         if (order == null) {
@@ -51,7 +51,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(order, headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> deleteOrder (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -64,7 +64,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Orders>> getAllOrders() {
         List<Orders> orders = this.ordersService.getAll();
 

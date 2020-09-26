@@ -19,7 +19,7 @@ public class SuppliersRestController {
     @Autowired
     private SuppliersService suppliersService;
 
-    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Suppliers> getSupplier (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -31,7 +31,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(supplier, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Suppliers> saveSupplier (@RequestBody @Valid Suppliers supplier) {
         HttpHeaders headers = new HttpHeaders();
         if (supplier == null) {
@@ -41,7 +41,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(supplier, headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Suppliers> updateSupplier (@RequestBody @Valid Suppliers supplier) {
         HttpHeaders headers = new HttpHeaders();
         if (supplier == null) {
@@ -51,7 +51,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(supplier, headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Suppliers> deleteSupplier (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -64,7 +64,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Suppliers>> getAllSuppliers() {
         List<Suppliers> suppliers = this.suppliersService.getAll();
 
