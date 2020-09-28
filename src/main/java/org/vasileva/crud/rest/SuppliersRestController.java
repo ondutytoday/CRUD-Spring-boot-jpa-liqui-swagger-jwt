@@ -35,7 +35,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(suppliersMapper.toSuppliersDto(supplier), HttpStatus.OK);
     }
 
-    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SuppliersDto> saveSupplier (@RequestBody @Valid SuppliersDto suppliersDto) {
         HttpHeaders headers = new HttpHeaders();
         if (suppliersDto == null) {
@@ -46,7 +46,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(suppliersMapper.toSuppliersDto(supplier), headers, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SuppliersDto> updateSupplier (@RequestBody @Valid SuppliersDto supplierDetailsDto, @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         if (supplierDetailsDto == null || id == null) {
@@ -68,7 +68,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(suppliersMapper.toSuppliersDto(supplier), headers, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SuppliersDto> deleteSupplier (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -81,7 +81,7 @@ public class SuppliersRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SuppliersDto>> getAllSuppliers() {
         List<Suppliers> suppliers = this.suppliersService.getAll();
 

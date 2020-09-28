@@ -35,7 +35,7 @@ public class StaffRestController {
         return new ResponseEntity<>(staffMapper.toStaffDto(staff), HttpStatus.OK);
     }
 
-    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StaffDto> saveStaff (@RequestBody @Valid StaffDto staffDto) {
         HttpHeaders headers = new HttpHeaders();
         if (staffDto == null) {
@@ -46,7 +46,7 @@ public class StaffRestController {
         return new ResponseEntity<>(staffMapper.toStaffDto(staff), headers, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StaffDto> updateStaff (@RequestBody @Valid StaffDto staffDetailsDto, @PathVariable("id") Long id ) {
         HttpHeaders headers = new HttpHeaders();
         if (staffDetailsDto == null|| id == null) {
@@ -71,7 +71,7 @@ public class StaffRestController {
         return new ResponseEntity<>(staffMapper.toStaffDto(staff), headers, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "delete/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StaffDto> deleteStaff (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -84,7 +84,7 @@ public class StaffRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "list",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<StaffDto>> getAllStaff() {
         List<Staff> staff = this.staffService.getAll();
 

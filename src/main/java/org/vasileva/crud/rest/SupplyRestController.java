@@ -35,7 +35,7 @@ public class SupplyRestController {
         return new ResponseEntity<>(supplyMapper.toSupplyDto(supply), HttpStatus.OK);
     }
 
-    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SupplyDto> saveSupply (@RequestBody @Valid SupplyDto supplyDto) {
         HttpHeaders headers = new HttpHeaders();
         if (supplyDto == null) {
@@ -46,7 +46,7 @@ public class SupplyRestController {
         return new ResponseEntity<>(supplyMapper.toSupplyDto(supply), headers, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SupplyDto> updateSupply (@RequestBody @Valid SupplyDto supplyDetailsDto, @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         if (supplyDetailsDto == null || id == null) {
@@ -65,7 +65,7 @@ public class SupplyRestController {
         return new ResponseEntity<>(supplyMapper.toSupplyDto(supply), headers, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "delete/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SupplyDto> deleteSupply (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -78,7 +78,7 @@ public class SupplyRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SupplyDto>> getAllSupplies() {
         List<Supply> supplies = this.supplyService.getAll();
 

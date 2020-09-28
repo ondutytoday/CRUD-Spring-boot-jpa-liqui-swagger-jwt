@@ -2,6 +2,7 @@ package org.vasileva.crud.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -25,13 +26,12 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
     }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfo(
-                "CRUD REST API",
-                "My first swagger rest API.",
-                "API 1.0",
-                "Terms of service",
-                new Contact("Elena", "www.example.com", "myeaddress@company.com"),
-                "License of API", "API license URL", Collections.emptyList());
+    @Bean
+    public ApiInfo apiInfo() {
+        final ApiInfoBuilder builder = new ApiInfoBuilder();
+        builder.title("CRUD REST API").version("1.0")
+                .description("My first API through Swagger UI")
+                .contact(new Contact("Elena", "https://www.instagram.com/ondutytoday/", "elenavw@gmail.com"));
+        return builder.build();
     }
 }

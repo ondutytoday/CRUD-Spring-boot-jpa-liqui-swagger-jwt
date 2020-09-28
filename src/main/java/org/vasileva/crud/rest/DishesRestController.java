@@ -35,7 +35,7 @@ public class DishesRestController {
         return new ResponseEntity<>(dishesMapper.toDishesDto(dish), HttpStatus.OK);
     }
 
-    @PostMapping(/*produces = MediaType.APPLICATION_JSON_VALUE*/)
+    @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesDto> saveDish(@RequestBody @Valid DishesDto dishDto) {
         HttpHeaders headers = new HttpHeaders();
         if (dishDto == null) {
@@ -46,7 +46,7 @@ public class DishesRestController {
         return new ResponseEntity<>(dishesMapper.toDishesDto(dish), headers, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesDto> updateDish(@RequestBody @Valid DishesDto dishDetailsDto, @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         if (dishDetailsDto == null || id == null) {
@@ -59,16 +59,16 @@ public class DishesRestController {
         }
         dish.setBalance(dishDetails.getBalance());
         dish.setCalories(dishDetails.getCalories());
-        dish.setDishesSupplies(dishDetails.getDishesSupplies());
+        //dish.setDishesSupplies(dishDetails.getDishesSupplies());
         dish.setDishName(dishDetails.getDishName());
-        dish.setOrdersOfDishes(dishDetails.getOrdersOfDishes());
+       // dish.setOrdersOfDishes(dishDetails.getOrdersOfDishes());
         dish.setPrice(dishDetails.getPrice());
 
         dishesService.save(dish);
         return new ResponseEntity<>(dishesMapper.toDishesDto(dish), headers, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesDto> deleteDish(@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -81,7 +81,7 @@ public class DishesRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DishesDto>> getAllDishes() {
         List<Dishes> dishes = this.dishesService.getAll();
 

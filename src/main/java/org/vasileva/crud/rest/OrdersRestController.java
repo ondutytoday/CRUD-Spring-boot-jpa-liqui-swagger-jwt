@@ -35,7 +35,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(ordersMapper.toOrdersDto(order), HttpStatus.OK);
     }
 
-    @PostMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "add",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrdersDto> saveOrder (@RequestBody @Valid OrdersDto ordersDto) {
         HttpHeaders headers = new HttpHeaders();
         if (ordersDto == null) {
@@ -46,7 +46,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(ordersMapper.toOrdersDto(order), headers, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrdersDto> updateOrder (@RequestBody @Valid OrdersDto ordersDetailsDto, @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         if (ordersDetailsDto == null|| id == null) {
@@ -66,7 +66,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(ordersMapper.toOrdersDto(order), headers, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrdersDto> deleteOrder (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -79,7 +79,7 @@ public class OrdersRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "list",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<OrdersDto>> getAllOrders() {
         List<Orders> orders = this.ordersService.getAll();
 

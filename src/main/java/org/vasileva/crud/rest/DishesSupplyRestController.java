@@ -35,7 +35,7 @@ public class DishesSupplyRestController {
         return new ResponseEntity<>(dishesSupplyMapper.toDishesSupplyDto(dishesSupply), HttpStatus.OK);
     }
 
-    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesSupplyDto> saveDishSupply (@RequestBody @Valid DishesSupplyDto dishesSupplyDto) {
         HttpHeaders headers = new HttpHeaders();
         if (dishesSupplyDto == null) {
@@ -46,7 +46,7 @@ public class DishesSupplyRestController {
         return new ResponseEntity<>(dishesSupplyMapper.toDishesSupplyDto(dishSupply), headers, HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "update/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesSupplyDto> updateDishSupply (@RequestBody @Valid DishesSupplyDto dishesSupplyDetailsDto, @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
         if (dishesSupplyDetailsDto == null || id == null) {
@@ -68,7 +68,7 @@ public class DishesSupplyRestController {
         return new ResponseEntity<>(dishesSupplyMapper.toDishesSupplyDto(dishSupply), headers, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "delete/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesSupplyDto> deleteDishSupply (@PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -81,7 +81,7 @@ public class DishesSupplyRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "list",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DishesSupplyDto>> getAllDishesSupply() {
         List<DishesSupply> dishesSupply = this.dishesSupplyService.getAll();
 
