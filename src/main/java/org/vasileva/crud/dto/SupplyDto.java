@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.vasileva.crud.entity.DishesSupply;
 import org.vasileva.crud.entity.Suppliers;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class SupplyDto {
 
-    private Timestamp dateOfSupply;
+    private Date dateOfSupply;
 
     private Suppliers supplier;
 

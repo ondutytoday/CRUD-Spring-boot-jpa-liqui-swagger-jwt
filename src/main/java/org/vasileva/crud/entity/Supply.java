@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -22,7 +22,7 @@ public class Supply {
     private Long supplyId;
 
     @Column(name = "date_of_supply", nullable = false)
-    private Timestamp dateOfSupply;
+    private Date dateOfSupply;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id", foreignKey = @ForeignKey(name = "FK_supplier"))
@@ -31,7 +31,7 @@ public class Supply {
     @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DishesSupply> dishesSupplies;
 
-    public Supply(Timestamp dateOfSupply, Suppliers supplier, Set<DishesSupply> dishesSupplies) {
+    public Supply(Date dateOfSupply, Suppliers supplier, Set<DishesSupply> dishesSupplies) {
         this.dateOfSupply = dateOfSupply;
         this.supplier = supplier;
         this.dishesSupplies = dishesSupplies;

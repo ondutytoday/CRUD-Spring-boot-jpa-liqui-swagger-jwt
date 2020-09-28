@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class Orders {
     private Long orderId;
 
     @Column(name = "timestamp", nullable = false)
-    private Timestamp timestamp;
+    private Date timestamp;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "personnel_number", foreignKey = @ForeignKey(name = "FK_STAFF"))
@@ -37,7 +37,7 @@ public class Orders {
             inverseJoinColumns = @JoinColumn(name = "dish_id", foreignKey = @ForeignKey(name = "fk_dish")))
     private List<Dishes> dishesInOrder;
 
-    public Orders(Timestamp timestamp, Staff staff, PaymentMethod paymentMethod, List<Dishes> dishesInOrder) {
+    public Orders(Date timestamp, Staff staff, PaymentMethod paymentMethod, List<Dishes> dishesInOrder) {
         this.timestamp = timestamp;
         this.staff = staff;
         this.paymentMethod = paymentMethod;

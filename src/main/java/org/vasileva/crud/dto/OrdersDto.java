@@ -8,7 +8,7 @@ import org.vasileva.crud.entity.Dishes;
 import org.vasileva.crud.entity.PaymentMethod;
 import org.vasileva.crud.entity.Staff;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OrdersDto {
 
-    private Timestamp timestamp;
+    private Date timestamp;
 
     private Staff staff;
 

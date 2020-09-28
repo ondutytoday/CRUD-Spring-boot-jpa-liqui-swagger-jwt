@@ -35,7 +35,7 @@ public class DishesRestController {
         return new ResponseEntity<>(dishesMapper.toDishesDto(dish), HttpStatus.OK);
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(/*produces = MediaType.APPLICATION_JSON_VALUE*/)
     public ResponseEntity<DishesDto> saveDish(@RequestBody @Valid DishesDto dishDto) {
         HttpHeaders headers = new HttpHeaders();
         if (dishDto == null) {
