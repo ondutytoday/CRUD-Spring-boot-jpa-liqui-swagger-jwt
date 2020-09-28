@@ -20,6 +20,7 @@
         <javax.validation.version>2.0.1.Final</javax.validation.version>
         <org.mapstruct.version>1.4.0.CR1</org.mapstruct.version>
         <lombok.version>1.18.12</lombok.version>
+        <swagger.version>3.0.0</swagger.version>
     </properties>
 
     <dependencies>
@@ -70,6 +71,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <!--swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+            <scope>compile</scope>
         </dependency>
         <!--tests-->
         <dependency>
