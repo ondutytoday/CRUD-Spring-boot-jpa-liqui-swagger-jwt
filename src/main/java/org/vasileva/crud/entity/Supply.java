@@ -10,27 +10,24 @@ import java.sql.Timestamp;
 import java.util.Set;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "supply")
 public class Supply {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "supply_id", nullable = false, updatable = false)
     private Long supplyId;
-    @Getter
-    @Setter
+
     @Column(name = "date_of_supply", nullable = false)
     private Timestamp dateOfSupply;
-    @Getter
-    @Setter
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id", foreignKey = @ForeignKey(name = "FK_supplier"))
     private Suppliers supplier;
-    @Getter
-    @Setter
+
     @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DishesSupply> dishesSupplies;
 

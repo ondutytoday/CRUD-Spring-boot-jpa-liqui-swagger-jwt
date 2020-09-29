@@ -8,32 +8,27 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "dishes_supply")
 public class DishesSupply {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "dishes_supply_id", nullable = false, updatable = false)
     private Long id;
-    @Getter
-    @Setter
+
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
-    @Getter
-    @Setter
+
     @Column(name = "price", scale = 2, nullable = false)
     private BigDecimal price;
 
-    @Getter
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supply_id", foreignKey = @ForeignKey(name = "FK_supply"))
     private Supply supply;
-    @Getter
-    @Setter
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dish_id", foreignKey = @ForeignKey(name = "FK_dish"))
     private Dishes dish;

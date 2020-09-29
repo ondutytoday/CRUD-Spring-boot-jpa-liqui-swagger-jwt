@@ -8,43 +8,35 @@ import javax.persistence.*;
 import java.util.Set;
 
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "suppliers")
 public class Suppliers {
 
-    @Getter
-    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "supplier_id", nullable = false, updatable = false)
     private Long supplierId;
 
-    @Getter
-    @Setter
     @Column(name = "supplier_name", nullable = false)
     private String supplierName;
-    @Getter
-    @Setter
+
     @Column(name = "supplier_address", nullable = false)
     private String supplierAddress;
-    @Getter
-    @Setter
+
     @Column(name = "inn", nullable = false)
     private Integer inn;
-    @Getter
-    @Setter
+
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
-    @Getter
-    @Setter
+
     @Column(name = "email", nullable = false)
     private String email;
-    @Getter
-    @Setter
+
     @Column(name = "information", nullable = true)
     private String information;
-    @Getter
-    @Setter
+
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Supply> supplies;
 
