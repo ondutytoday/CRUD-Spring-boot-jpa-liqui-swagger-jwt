@@ -1,5 +1,6 @@
 package org.vasileva.crud.rest;
 
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.vasileva.crud.service.StaffService;
 import javax.validation.Valid;
 import java.util.List;
 
+@Api(value = "CRUD Application", tags = {"Staff RestController"})
 @RestController
 @RequestMapping("/staff/")
 public class StaffRestController {
@@ -23,8 +25,16 @@ public class StaffRestController {
     @Autowired
     private StaffMapper staffMapper;
 
-    @GetMapping(value = "{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StaffDto> getStaff (@PathVariable("id") Long id) {
+    @ApiOperation(value = "View an employee selected by id", response = StaffDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "The resource was successfully retrieved"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
+    @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<StaffDto> getStaff(@ApiParam(value = "ID of an employee")
+                                             @PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -35,8 +45,16 @@ public class StaffRestController {
         return new ResponseEntity<>(staffMapper.toStaffDto(staff), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Add an employee", response = StaffDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "The resource was successfully added"),
+            @ApiResponse(code = 401, message = "You are not authorized to add the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to add is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
     @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StaffDto> saveStaff (@RequestBody @Valid StaffDto staffDto) {
+    public ResponseEntity<StaffDto> saveStaff(@ApiParam(value = "A JSON value representing an employee.")
+                                              @RequestBody @Valid StaffDto staffDto) {
         HttpHeaders headers = new HttpHeaders();
         if (staffDto == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -46,10 +64,20 @@ public class StaffRestController {
         return new ResponseEntity<>(staffMapper.toStaffDto(staff), headers, HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Update an employee", response = StaffDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "The resource was successfully updated"),
+            @ApiResponse(code = 401, message = "You are not authorized to update the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to update is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to update is not found")
+    })
     @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StaffDto> updateStaff (@RequestBody @Valid StaffDto staffDetailsDto, @PathVariable("id") Long id ) {
+    public ResponseEntity<StaffDto> updateStaff(@ApiParam(value = "A JSON value representing an employee.")
+                                                @RequestBody @Valid StaffDto staffDetailsDto,
+                                                @ApiParam(value = "ID of an employee you want to update")
+                                                @PathVariable("id") Long id) {
         HttpHeaders headers = new HttpHeaders();
-        if (staffDetailsDto == null|| id == null) {
+        if (staffDetailsDto == null || id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Staff staff = staffService.getById(id);
@@ -71,8 +99,16 @@ public class StaffRestController {
         return new ResponseEntity<>(staffMapper.toStaffDto(staff), headers, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "delete/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StaffDto> deleteStaff (@PathVariable("id") Long id) {
+    @ApiOperation(value = "Delete an employee")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "The resource was successfully deleted"),
+            @ApiResponse(code = 401, message = "You are not authorized to delete the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to delete is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to delete is not found")
+    })
+    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<StaffDto> deleteStaff(@ApiParam(value = "ID of an employee you want to delete")
+                                                @PathVariable("id") Long id) {
         if (id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -84,7 +120,14 @@ public class StaffRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping(value = "list",  produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "View a list of available staff", response = StaffDto.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "The resource was successfully retrieved"),
+            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+    })
+    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<StaffDto>> getAllStaff() {
         List<Staff> staff = this.staffService.getAll();
 

@@ -27,7 +27,7 @@ public class DishesRestController {
     private DishesMapper dishesMapper;
 
 
-    @ApiOperation(value = "View dish selected by id", response = DishesDto.class)
+    @ApiOperation(value = "View a dish selected by id", response = DishesDto.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "The resource was successfully retrieved"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
