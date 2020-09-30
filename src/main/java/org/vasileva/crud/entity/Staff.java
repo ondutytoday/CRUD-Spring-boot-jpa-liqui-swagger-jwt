@@ -39,7 +39,7 @@ public class Staff {
 
     @Column(name = "patronymic", length = 100, nullable = true)
     @ApiModelProperty(notes = "Отчество",
-            example = "Петрович", required = true)
+            example = "Петрович", required = false)
     private String patronymic;
 
     @Column(name = "gender", length = 11, nullable = false)
