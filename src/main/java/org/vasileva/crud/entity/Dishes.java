@@ -18,10 +18,10 @@ public class Dishes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "dish_id", nullable = false, updatable = false)
+    @Column(name = "dish_id", nullable = false)
     private Long dishId;
 
-    @Column(name = "dish_Name", length = 100, nullable = false, updatable = false)
+    @Column(name = "dish_Name", length = 100, nullable = false)
     private String dishName;
 
     @Column(name = "calories", scale = 1, nullable = false)

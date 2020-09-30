@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RootController {
     @GetMapping
     public String swaggerUi() {
-        return "redirect:/swagger-ui/";
+        return "redirect:/swagger-ui/index.html";
     }
 }
 
