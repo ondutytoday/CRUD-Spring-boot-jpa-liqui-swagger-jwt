@@ -1,5 +1,7 @@
 package org.vasileva.crud.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +15,18 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(description = "Вспомогательная таблица для отношения блюд и поставок и учета количества и цены блюд в поставке")
 public class DishesSupplyDto {
+
+    @ApiModelProperty(notes = "Количество определенного блюда в поставке", example = "3", required = true)
     private Integer quantity;
 
+    @ApiModelProperty(notes = "Цена блюда в данной поставке", example = "12.99", required = true)
     private BigDecimal price;
 
+    @ApiModelProperty(notes = "Поставка", required = true)
     private Supply supply;
 
+    @ApiModelProperty(notes = "Блюдо", required = true)
     private Dishes dish;
 }

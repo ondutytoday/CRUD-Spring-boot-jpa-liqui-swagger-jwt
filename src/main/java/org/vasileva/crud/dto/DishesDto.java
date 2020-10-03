@@ -1,5 +1,7 @@
 package org.vasileva.crud.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,17 +16,24 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(description = "Список блюд ресторана")
 public class DishesDto {
 
+    @ApiModelProperty(notes = "Название блюда", example = "Биг Мак", required = true)
     private String dishName;
 
+    @ApiModelProperty(notes = "Энергетическая ценность в ккал", example = "201.25", required = true)
     private Double calories;
 
+    @ApiModelProperty(notes = "Цена за 1 штуку", example = "15.32", required = true)
     private BigDecimal price;
 
+    @ApiModelProperty(notes = "Количество штук в остатке (на складе)", example = "250", required = true)
     private Integer balance;
 
+    @ApiModelProperty(notes = "Список заказов, в котором присутствует данное блюдо", required = false)
     private Set<Orders> ordersOfDishes;
 
+    @ApiModelProperty(notes = "Список списка поставок и блюд в этой поставке", required = false)
     private Set<DishesSupply> dishesSupplies;
 }
