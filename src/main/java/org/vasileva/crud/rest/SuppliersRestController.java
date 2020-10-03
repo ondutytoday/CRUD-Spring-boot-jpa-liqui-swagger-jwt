@@ -52,7 +52,7 @@ public class SuppliersRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to add is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SuppliersDto> saveSupplier(@ApiParam(value = "A JSON value representing a supplier.")
                                                      @RequestBody @Valid SuppliersDto suppliersDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -71,7 +71,7 @@ public class SuppliersRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to update is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to update is not found")
     })
-    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SuppliersDto> updateSupplier(@ApiParam(value = "A JSON value representing a supplier.")
                                                        @RequestBody @Valid SuppliersDto supplierDetailsDto,
                                                        @ApiParam(value = "ID of a supplier you want to update")
@@ -103,7 +103,7 @@ public class SuppliersRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to delete is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to delete is not found")
     })
-    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SuppliersDto> deleteSupplier(@ApiParam(value = "ID of a supplier you want to delete")
                                                        @PathVariable("id") Long id) {
         if (id == null) {
@@ -124,7 +124,7 @@ public class SuppliersRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<SuppliersDto>> getAllSuppliers() {
         List<Suppliers> suppliers = this.suppliersService.getAll();
 

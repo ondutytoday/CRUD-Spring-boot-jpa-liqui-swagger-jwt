@@ -54,7 +54,7 @@ public class DishesRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to add is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    @PostMapping(value = "add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesDto> saveDish(@ApiParam(value = "A JSON value representing a dish.")
                                               @RequestBody @Valid DishesDto dishDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -73,7 +73,7 @@ public class DishesRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to update is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to update is not found")
     })
-    @PutMapping(value = "update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesDto> updateDish(@ApiParam(value = "A JSON value representing a dish.")
                                                 @RequestBody @Valid DishesDto dishDetailsDto,
                                                 @ApiParam(value = "ID of a dish you want to update")
@@ -105,7 +105,7 @@ public class DishesRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to delete is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to delete is not found")
     })
-    @DeleteMapping(value = "delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DishesDto> deleteDish(@ApiParam(value = "ID of a dish you want to delete")
                                                 @PathVariable("id") Long id) {
         if (id == null) {
@@ -126,7 +126,7 @@ public class DishesRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DishesDto>> getAllDishes() {
         List<Dishes> dishes = this.dishesService.getAll();
 
