@@ -1,5 +1,6 @@
 package org.vasileva.crud.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -25,8 +26,10 @@ public class DishesSupplyDto {
     private BigDecimal price;
 
     @ApiModelProperty(notes = "Поставка", required = true)
+/*    @JsonBackReference*/
     private Supply supply;
 
     @ApiModelProperty(notes = "Блюдо", required = true)
+/*    @JsonBackReference*/
     private Dishes dish;
 }

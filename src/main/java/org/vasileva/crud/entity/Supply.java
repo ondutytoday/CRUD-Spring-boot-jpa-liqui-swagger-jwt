@@ -1,6 +1,7 @@
 package org.vasileva.crud.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Supply {
     private Long supplyId;
 
     @Column(name = "date_of_supply", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfSupply;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,6 +31,7 @@ public class Supply {
     private Suppliers supplier;
 
     @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<DishesSupply> dishesSupplies;
 
     public Supply(Date dateOfSupply, Suppliers supplier, Set<DishesSupply> dishesSupplies) {

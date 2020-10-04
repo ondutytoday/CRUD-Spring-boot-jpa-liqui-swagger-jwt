@@ -1,5 +1,8 @@
 package org.vasileva.crud.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -32,8 +35,13 @@ public class DishesDto {
     private Integer balance;
 
     @ApiModelProperty(notes = "Список заказов, в котором присутствует данное блюдо", required = false)
+/*    @JsonIgnoreProperties("ordersOfDishes")*/
+    @JsonIgnore
     private Set<Orders> ordersOfDishes;
 
     @ApiModelProperty(notes = "Список списка поставок и блюд в этой поставке", required = false)
+/*    @JsonIgnoreProperties("dishesSupplies")*/
+/*    @JsonManagedReference*/
+    @JsonIgnore
     private Set<DishesSupply> dishesSupplies;
 }

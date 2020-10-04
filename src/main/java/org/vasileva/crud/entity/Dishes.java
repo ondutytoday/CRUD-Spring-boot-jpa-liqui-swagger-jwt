@@ -1,5 +1,7 @@
 package org.vasileva.crud.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,9 +38,13 @@ public class Dishes {
     private Integer balance;
 
     @ManyToMany (mappedBy = "dishesInOrder")
+/*    @JsonIgnoreProperties("ordersOfDishes")*/
+    @JsonIgnore
     private Set<Orders> ordersOfDishes;
 
     @OneToMany (mappedBy = "dish", cascade = CascadeType.ALL, orphanRemoval = true)
+/*    @JsonIgnoreProperties("ordersOfDishes")*/
+    @JsonIgnore
     private Set<DishesSupply> dishesSupplies;
 
     public Dishes(String dishName, Double calories, BigDecimal price, Integer balance) {

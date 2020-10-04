@@ -1,5 +1,6 @@
 package org.vasileva.crud.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +39,7 @@ public class Suppliers {
     private String information;
 
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Supply> supplies;
 
     public Suppliers(String supplierName, String supplierAddress,

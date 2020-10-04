@@ -1,5 +1,6 @@
 package org.vasileva.crud.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -36,5 +37,6 @@ public class SuppliersDto {
     private String information;
 
     @ApiModelProperty(notes = "Список поставок, которые произвел поставщик", required = false)
+    @JsonIgnore
     private Set<Supply> supplies;
 }

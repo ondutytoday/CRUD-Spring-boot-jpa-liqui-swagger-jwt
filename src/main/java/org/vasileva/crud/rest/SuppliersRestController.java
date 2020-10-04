@@ -32,7 +32,7 @@ public class SuppliersRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "_{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SuppliersDto> getSupplier(@ApiParam(value = "ID of a supplier")
                                                     @PathVariable("id") Long id) {
         if (id == null) {

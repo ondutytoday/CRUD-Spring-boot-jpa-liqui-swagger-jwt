@@ -1,12 +1,14 @@
 package org.vasileva.crud.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -36,6 +38,8 @@ public class Staff {
     private Gender gender;
 
     @Column(name = "date_of_birth", nullable = false)
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date dateOfBirth;
 
     @Column(name = "passport", nullable = false)
@@ -51,6 +55,7 @@ public class Staff {
     private BigDecimal salary;
 
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Set<Orders> orders;
 
     public Staff(String surname, String name, String patronymic,

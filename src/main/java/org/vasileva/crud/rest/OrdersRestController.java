@@ -100,7 +100,7 @@ public class OrdersRestController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to delete is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to delete is not found")
     })
-    @DeleteMapping(value = "id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrdersDto> deleteOrder(@ApiParam(value = "ID of an order you want to delete")
                                                      @PathVariable("id") Long id) {
         if (id == null) {

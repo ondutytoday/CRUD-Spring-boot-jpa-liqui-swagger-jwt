@@ -1,5 +1,6 @@
 package org.vasileva.crud.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Orders {
     private Long orderId;
 
     @Column(name = "timestamp", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -36,6 +38,7 @@ public class Orders {
     @JoinTable(name = "dishes_order",
             joinColumns = @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order")),
             inverseJoinColumns = @JoinColumn(name = "dish_id", foreignKey = @ForeignKey(name = "fk_dish")))
+    @JsonIgnore
     private List<Dishes> dishesInOrder;
 
     public Orders(Date timestamp, Staff staff, PaymentMethod paymentMethod, List<Dishes> dishesInOrder) {

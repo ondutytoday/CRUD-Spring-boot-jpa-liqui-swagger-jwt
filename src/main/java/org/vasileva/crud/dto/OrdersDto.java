@@ -1,5 +1,6 @@
 package org.vasileva.crud.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -26,9 +27,10 @@ public class OrdersDto {
     @ApiModelProperty(notes = "Сотрудник, принимающий заказ", required = true)
     private Staff staff;
 
-    @ApiModelProperty(notes = "Метод оплаты", example = "cash", required = true)
+    @ApiModelProperty(notes = "Метод оплаты", example = "Cash", required = true)
     private PaymentMethod paymentMethod;
 
     @ApiModelProperty(notes = "Список блюд в заказе", required = false)
+    @JsonIgnore
     private List<Dishes> dishesInOrder;
 }
