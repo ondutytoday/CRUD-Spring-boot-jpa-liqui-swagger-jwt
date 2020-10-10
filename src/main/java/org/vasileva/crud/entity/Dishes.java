@@ -1,7 +1,6 @@
 package org.vasileva.crud.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,12 +37,10 @@ public class Dishes {
     private Integer balance;
 
     @ManyToMany (mappedBy = "dishesInOrder")
-/*    @JsonIgnoreProperties("ordersOfDishes")*/
     @JsonIgnore
     private Set<Orders> ordersOfDishes;
 
     @OneToMany (mappedBy = "dish", cascade = CascadeType.ALL, orphanRemoval = true)
-/*    @JsonIgnoreProperties("ordersOfDishes")*/
     @JsonIgnore
     private Set<DishesSupply> dishesSupplies;
 
@@ -54,7 +51,21 @@ public class Dishes {
         this.balance = balance;
     }
 
-    @Override
+    public void setOrdersOfDishes(Set<Orders> ordersOfDishes) {
+        this.ordersOfDishes.clear();
+        if (ordersOfDishes != null) {
+            this.ordersOfDishes.addAll(ordersOfDishes);
+        }
+    }
+
+    public void setDishesSupplies(Set<DishesSupply> dishesSupplies) {
+        this.dishesSupplies.clear();
+        if (dishesSupplies != null) {
+            this.dishesSupplies.addAll(dishesSupplies);
+        }
+    }
+
+        @Override
     public String toString() {
         return dishName;
     }

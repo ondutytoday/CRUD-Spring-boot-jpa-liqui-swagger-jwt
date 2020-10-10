@@ -52,7 +52,14 @@ public class Suppliers {
         this.information = information;
     }
 
-    @Override
+    public void setSupplies(Set<Supply> supplies) {
+        this.supplies.clear();
+        if (supplies != null) {
+            this.supplies.addAll(supplies);
+        }
+    }
+
+        @Override
     public String toString() {
         return "supplierId=" + supplierId +
                 ", supplierName='" + supplierName;

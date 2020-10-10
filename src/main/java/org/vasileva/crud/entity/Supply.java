@@ -40,7 +40,14 @@ public class Supply {
         this.dishesSupplies = dishesSupplies;
     }
 
-    @Override
+    public void setDishesSupplies(Set<DishesSupply> dishesSupplies) {
+        this.dishesSupplies.clear();
+        if (dishesSupplies != null) {
+            this.dishesSupplies.addAll(dishesSupplies);
+        }
+    }
+
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

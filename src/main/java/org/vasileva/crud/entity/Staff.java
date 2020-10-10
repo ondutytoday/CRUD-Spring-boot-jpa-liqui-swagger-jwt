@@ -72,7 +72,14 @@ public class Staff {
         this.salary = salary;
     }
 
-    @Override
+    public void setOrders(Set<Orders> orders) {
+        this.orders.clear();
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
+    }
+
+        @Override
     public String toString() {
         return "[" + personnelNumber +
                 ", " + surname + ' ' +

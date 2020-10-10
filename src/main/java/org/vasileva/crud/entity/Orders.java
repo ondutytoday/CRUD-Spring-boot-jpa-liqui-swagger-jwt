@@ -48,7 +48,14 @@ public class Orders {
         this.dishesInOrder = dishesInOrder;
     }
 
-    @Override
+    public void setDishesInOrder(List<Dishes> dishesInOrder) {
+        this.dishesInOrder.clear();
+        if (dishesInOrder != null) {
+            this.dishesInOrder.addAll(dishesInOrder);
+        }
+    }
+
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
