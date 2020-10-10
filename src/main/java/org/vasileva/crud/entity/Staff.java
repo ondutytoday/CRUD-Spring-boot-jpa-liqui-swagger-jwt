@@ -54,7 +54,7 @@ public class Staff {
     @Column(name = "salary", nullable = false)
     private BigDecimal salary;
 
-    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "staff", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Orders> orders;
 

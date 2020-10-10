@@ -26,11 +26,11 @@ public class Supply {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfSupply;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "supplier_id", foreignKey = @ForeignKey(name = "FK_supplier"))
     private Suppliers supplier;
 
-    @OneToMany(mappedBy = "supply", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "supply", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<DishesSupply> dishesSupplies;
 

@@ -25,11 +25,11 @@ public class DishesSupply {
     @Column(name = "price", scale = 2, nullable = false)
     private BigDecimal price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "supply_id", foreignKey = @ForeignKey(name = "FK_supply"))
     private Supply supply;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dish_id", foreignKey = @ForeignKey(name = "FK_dish"))
     private Dishes dish;
 

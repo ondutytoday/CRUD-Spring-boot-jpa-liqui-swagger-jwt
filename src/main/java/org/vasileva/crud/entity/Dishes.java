@@ -36,11 +36,12 @@ public class Dishes {
     //запас, количество штук в остатке
     private Integer balance;
 
-    @ManyToMany (mappedBy = "dishesInOrder")
+    @ManyToMany (mappedBy = "dishesInOrder", fetch = FetchType.EAGER)
+
     @JsonIgnore
     private Set<Orders> ordersOfDishes;
 
-    @OneToMany (mappedBy = "dish", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany (mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<DishesSupply> dishesSupplies;
 

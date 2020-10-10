@@ -38,7 +38,7 @@ public class Suppliers {
     @Column(name = "information", nullable = true)
     private String information;
 
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Supply> supplies;
 
