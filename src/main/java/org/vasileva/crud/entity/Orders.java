@@ -38,7 +38,7 @@ public class Orders {
     @JoinTable(name = "dishes_order",
             joinColumns = @JoinColumn(name = "order_id", foreignKey = @ForeignKey(name = "fk_order")),
             inverseJoinColumns = @JoinColumn(name = "dish_id", foreignKey = @ForeignKey(name = "fk_dish")))
-    @JsonIgnore
+    //@JsonIgnore
     private List<Dishes> dishesInOrder;
 
     public Orders(Date timestamp, Staff staff, PaymentMethod paymentMethod, List<Dishes> dishesInOrder) {

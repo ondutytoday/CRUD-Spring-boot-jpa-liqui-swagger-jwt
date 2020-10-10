@@ -31,6 +31,6 @@ public class OrdersDto {
     private PaymentMethod paymentMethod;
 
     @ApiModelProperty(notes = "Список блюд в заказе", required = false)
-    @JsonIgnore
+    //@JsonIgnore
     private List<Dishes> dishesInOrder;
 }
