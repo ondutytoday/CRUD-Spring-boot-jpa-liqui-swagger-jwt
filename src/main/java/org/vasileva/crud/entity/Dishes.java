@@ -37,7 +37,6 @@ public class Dishes {
     private Integer balance;
 
     @ManyToMany (mappedBy = "dishesInOrder", fetch = FetchType.EAGER)
-
     @JsonIgnore
     private Set<Orders> ordersOfDishes;
 
