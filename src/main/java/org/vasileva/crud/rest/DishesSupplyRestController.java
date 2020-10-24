@@ -20,10 +20,14 @@ import java.util.List;
 @RequestMapping("/dishes_supply/")
 public class DishesSupplyRestController {
 
+    private final DishesSupplyService dishesSupplyService;
+    private final DishesSupplyMapper dishesSupplyMapper;
+
     @Autowired
-    private DishesSupplyService dishesSupplyService;
-    @Autowired
-    private DishesSupplyMapper dishesSupplyMapper;
+    public DishesSupplyRestController(DishesSupplyService dishesSupplyService, DishesSupplyMapper dishesSupplyMapper) {
+        this.dishesSupplyService = dishesSupplyService;
+        this.dishesSupplyMapper = dishesSupplyMapper;
+    }
 
     @ApiOperation(value = "View a dishSupply selected by id", response = DishesSupplyDto.class)
     @ApiResponses(value = {

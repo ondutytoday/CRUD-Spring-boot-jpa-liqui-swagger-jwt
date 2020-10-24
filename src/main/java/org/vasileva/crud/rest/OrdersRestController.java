@@ -20,10 +20,14 @@ import java.util.List;
 @RequestMapping("/orders/")
 public class OrdersRestController {
 
+    private final OrdersService ordersService;
+    private final OrdersMapper ordersMapper;
+
     @Autowired
-    private OrdersService ordersService;
-    @Autowired
-    private OrdersMapper ordersMapper;
+    public OrdersRestController(OrdersService ordersService, OrdersMapper ordersMapper) {
+        this.ordersService = ordersService;
+        this.ordersMapper = ordersMapper;
+    }
 
     @ApiOperation(value = "View an order selected by id", response = OrdersDto.class)
     @ApiResponses(value = {

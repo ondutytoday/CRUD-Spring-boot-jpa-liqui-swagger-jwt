@@ -1,4 +1,4 @@
-package org.vasileva.crud.swagger;
+package org.vasileva.crud.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

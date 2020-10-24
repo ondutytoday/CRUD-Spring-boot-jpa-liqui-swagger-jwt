@@ -20,10 +20,14 @@ import java.util.List;
 @RequestMapping("/staff/")
 public class StaffRestController {
 
+    private final StaffService staffService;
+    private final StaffMapper staffMapper;
+
     @Autowired
-    private StaffService staffService;
-    @Autowired
-    private StaffMapper staffMapper;
+    public StaffRestController(StaffService staffService, StaffMapper staffMapper) {
+        this.staffService = staffService;
+        this.staffMapper = staffMapper;
+    }
 
     @ApiOperation(value = "View an employee selected by id", response = StaffDto.class)
     @ApiResponses(value = {

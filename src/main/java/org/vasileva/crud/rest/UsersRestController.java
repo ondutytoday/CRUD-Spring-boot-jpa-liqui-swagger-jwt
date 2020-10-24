@@ -12,8 +12,8 @@ import org.vasileva.crud.service.UsersService;
 @RequestMapping("/users/")
 public class UsersRestController {
 
-    UsersService usersService;
-    UsersMapper usersMapper;
+    private final UsersService usersService;
+    private final UsersMapper usersMapper;
 
     @Autowired
     public UsersRestController(UsersService usersService, UsersMapper usersMapper) {

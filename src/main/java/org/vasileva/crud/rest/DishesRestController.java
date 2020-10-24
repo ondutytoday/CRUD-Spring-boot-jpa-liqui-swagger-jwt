@@ -21,11 +21,15 @@ import java.util.List;
 @RequestMapping("/dishes/")
 public class DishesRestController {
 
-    @Autowired
-    private DishesService dishesService;
-    @Autowired
-    private DishesMapper dishesMapper;
 
+    private final DishesService dishesService;
+    private final DishesMapper dishesMapper;
+
+    @Autowired
+    public DishesRestController(DishesService dishesService, DishesMapper dishesMapper) {
+        this.dishesService = dishesService;
+        this.dishesMapper = dishesMapper;
+    }
 
     @ApiOperation(value = "View a dish selected by id", response = DishesDto.class)
     @ApiResponses(value = {

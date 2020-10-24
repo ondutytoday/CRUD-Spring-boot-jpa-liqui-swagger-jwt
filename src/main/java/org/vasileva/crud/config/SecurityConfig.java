@@ -1,4 +1,4 @@
-package org.vasileva.crud.security;
+package org.vasileva.crud.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,13 +13,20 @@ import org.vasileva.crud.entity.Role;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.GET, "").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                .antMatchers(HttpMethod.GET, "/*/").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+                .antMatchers(HttpMethod.POST, "/*/").hasAnyRole(Role.ADMIN.name())
+                .antMatchers(HttpMethod.PUT, "/*/").hasAnyRole(Role.ADMIN.name())
+                .antMatchers(HttpMethod.DELETE, "/*/").hasAnyRole(Role.ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -20,10 +20,16 @@ import java.util.List;
 @RequestMapping("/supply/")
 public class SupplyRestController {
 
-    @Autowired
     private SupplyService supplyService;
-    @Autowired
     private SupplyMapper supplyMapper;
+
+    public SupplyRestController(SupplyService supplyService, SupplyMapper supplyMapper) {
+        this.supplyService = supplyService;
+        this.supplyMapper = supplyMapper;
+    }
+
+    @Autowired
+
 
     @ApiOperation(value = "View a supply selected by id", response = SupplyDto.class)
     @ApiResponses(value = {
