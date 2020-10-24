@@ -14,5 +14,6 @@
     <include file="10-changeset-orders-table.xml" relativeToChangelogFile="true"/>
     <include file="10-changeset-dishes_supply-table.xml" relativeToChangelogFile="true"/>
     <include file="10-changeset-dishes_order-table.xml" relativeToChangelogFile="true"/>
+    <include file="10-changeset-users-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
