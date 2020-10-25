@@ -8,18 +8,18 @@ import org.vasileva.crud.entity.Users;
 import java.util.Collection;
 import java.util.Collections;
 
-public class CustomUserDetails implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
     private String username;
     private String password;
     private Collection<? extends GrantedAuthority> grantedAuthorities;
 
-    public static CustomUserDetails fromUsersToCustomUserDetails (Users user) {
-        CustomUserDetails customUserDetails = new CustomUserDetails();
-        customUserDetails.username = user.getUsername();
-        customUserDetails.password = user.getPassword();
-        customUserDetails.grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getRoleName()));
-        return customUserDetails;
+    public static UserDetailsImpl fromUsersToCustomUserDetails (Users user) {
+        UserDetailsImpl userDetailsImpl = new UserDetailsImpl();
+        userDetailsImpl.username = user.getUsername();
+        userDetailsImpl.password = user.getPassword();
+        userDetailsImpl.grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getRoleName()));
+        return userDetailsImpl;
     }
 
     @Override
