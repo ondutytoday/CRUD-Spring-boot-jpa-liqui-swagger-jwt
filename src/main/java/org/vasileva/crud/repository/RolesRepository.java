@@ -2,10 +2,10 @@ package org.vasileva.crud.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.vasileva.crud.entity.Users;
+import org.vasileva.crud.entity.Roles;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users, Long> {
+public interface RolesRepository extends JpaRepository<Roles,Long> {
 
-    Users findByUsername (String username);
+    Roles findByRoleName(String roleName);
 }
