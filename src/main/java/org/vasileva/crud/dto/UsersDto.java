@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.vasileva.crud.entity.Roles;
 
 @Getter
 @Setter
@@ -20,10 +19,4 @@ public class UsersDto {
 
     @ApiModelProperty(notes = "пароль", example = "123", required = true)
     private String password;
-
-    @ApiModelProperty(notes = "email", example = "email@mail.ru", required = true)
-    private String email;
-
-    @ApiModelProperty(notes = "роль", example = "USER", required = true)
-    private Roles role;
 }
