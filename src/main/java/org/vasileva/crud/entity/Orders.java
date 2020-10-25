@@ -27,7 +27,6 @@ public class Orders {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "personnel_number", foreignKey = @ForeignKey(name = "FK_STAFF"))
-
     private Staff staff;
 
     @Column(name = "payment_method", length = 4, nullable = false)

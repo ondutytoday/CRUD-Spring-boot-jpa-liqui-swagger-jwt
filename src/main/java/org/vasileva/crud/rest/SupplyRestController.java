@@ -23,13 +23,11 @@ public class SupplyRestController {
     private SupplyService supplyService;
     private SupplyMapper supplyMapper;
 
+    @Autowired
     public SupplyRestController(SupplyService supplyService, SupplyMapper supplyMapper) {
         this.supplyService = supplyService;
         this.supplyMapper = supplyMapper;
     }
-
-    @Autowired
-
 
     @ApiOperation(value = "View a supply selected by id", response = SupplyDto.class)
     @ApiResponses(value = {

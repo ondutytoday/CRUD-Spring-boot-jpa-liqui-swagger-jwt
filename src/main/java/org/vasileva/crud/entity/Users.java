@@ -29,8 +29,8 @@ public class Users {
     @Column(name = "email", length = 255, nullable = false, unique = true)
     private String email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name="role", length = 15, nullable = false)
-    private Role role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "FK_ROLE"))
+    private Roles role;
 
 }

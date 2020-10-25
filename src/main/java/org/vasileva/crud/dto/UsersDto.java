@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.vasileva.crud.entity.Role;
+import org.vasileva.crud.entity.Roles;
 
 @Getter
 @Setter
@@ -25,5 +25,5 @@ public class UsersDto {
     private String email;
 
     @ApiModelProperty(notes = "роль", example = "USER", required = true)
-    private Role role;
+    private Roles role;
 }

@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.vasileva.crud.entity.Role;
+import org.vasileva.crud.entity.Roles;
 import org.vasileva.crud.security.JwtConfigurer;
 
 @Configuration
@@ -29,10 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.GET, "/*/").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
-                .antMatchers(HttpMethod.POST, "/*/").hasAnyRole(Role.ADMIN.name())
-                .antMatchers(HttpMethod.PUT, "/*/").hasAnyRole(Role.ADMIN.name())
-                .antMatchers(HttpMethod.DELETE, "/*/").hasAnyRole(Role.ADMIN.name())
+//                .antMatchers(HttpMethod.GET, "/*/").hasAnyRole(Roles.ADMIN.name(), Role.USER.name())
+//                .antMatchers(HttpMethod.POST, "/*/").hasAnyRole(Roles.ADMIN.name())
+//                .antMatchers(HttpMethod.PUT, "/*/").hasAnyRole(Roles.ADMIN.name())
+//                .antMatchers(HttpMethod.DELETE, "/*/").hasAnyRole(Roles.ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
