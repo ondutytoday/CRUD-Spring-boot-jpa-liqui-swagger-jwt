@@ -2,7 +2,11 @@ package org.vasileva.crud.security;
 
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -15,6 +19,12 @@ public class JwtProvider {
 
     @Value("${jwt.secret}")
     private String jwtSecret;
+
+    private final UserDetailsServiceImpl userDetailsService;
+
+    public JwtProvider(@Qualifier("userDetailsServiceImpl") UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     public String generateToken (String username) {
         Date date = Date.from(LocalDate.now()
@@ -51,6 +61,11 @@ public class JwtProvider {
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token).getBody();
         return claims.getSubject();
+    }
+
+    public Authentication getAuthentication (String token) {
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsernameFromToken(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
 }
