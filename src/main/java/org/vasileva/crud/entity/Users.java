@@ -33,4 +33,10 @@ public class Users {
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "FK_ROLE"))
     private Roles role;
 
+    public Users(String username, String password, String email, Roles role) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
 }

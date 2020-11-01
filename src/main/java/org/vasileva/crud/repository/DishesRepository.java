@@ -8,4 +8,5 @@ import org.vasileva.crud.entity.Dishes;
 public interface DishesRepository extends JpaRepository<Dishes, Long>{
 
 
+
 }

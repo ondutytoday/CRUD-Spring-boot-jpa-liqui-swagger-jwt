@@ -22,4 +22,8 @@ public class Roles {
 
     @Column(name="role", length = 50, nullable = false)
     private String roleName;
+
+    public Roles(String roleName) {
+        this.roleName = roleName;
+    }
 }
