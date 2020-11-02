@@ -82,7 +82,7 @@ class DishesRestControllerTest {
     @WithUserDetails(value = "admin")
     void deleteDishIsCorrect() throws Exception {
         String token = jwtProvider.generateToken("admin");
-        this.mockMvc.perform(delete("/dishes/", 1)
+        this.mockMvc.perform(delete("/dishes/1")
                 .header("Authorization", token))
                 .andDo(print())
                 .andExpect(authenticated())
